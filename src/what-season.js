@@ -15,8 +15,6 @@ function getSeason(date) {
   if (!date) {
     return 'Unable to determine the time of year!';
   }
-
-  // Check if date is an instance of Date and not a "fake" date
   if (!(date instanceof Date) || Object.prototype.toString.call(date) !== '[object Date]') {
     throw new Error('Invalid date!');
   }
@@ -25,11 +23,6 @@ function getSeason(date) {
   const requiredDateMethods = ['getMonth', 'getFullYear', 'getDate', 'getHours', 'getMinutes', 'getSeconds', 'getMilliseconds', 'getDay'];
 
   if (!requiredDateMethods.every(method => typeof date[method] === 'function')) {
-    throw new Error('Invalid date!');
-  }
-
-  // Check if the date object is a "fake" date
-  if (date.toString() !== Object.prototype.toString.call(new Date())) {
     throw new Error('Invalid date!');
   }
   const month = date.getMonth();
